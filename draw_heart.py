@@ -21,10 +21,13 @@ def calculate_heart_points(size: int) -> list[list[bool]]:
         row_points = []
         for col in range(size):
             # Convert to math coordinates (center at 0,0)
-            # Scale coordinates based on size (use 4.0 for better visibility)
-            scale = 4.0 / size
-            x = (col - size/2) * scale
-            y = (size/2 - row) * scale
+            # Use different scales for x and y to make heart wider (heart is naturally wider than tall)
+            # x_scale smaller = wider heart, y_scale larger = taller heart
+            x_scale = 2.5 / size  # Horizontal scale
+            y_scale = 2.0 / size  # Vertical scale
+
+            x = (col - size/2) * x_scale
+            y = (size/2 - row) * y_scale
 
             # Heart equation: (x²+y²-1)³ - x²y³ ≤ 0
             equation = (x*x + y*y - 1)**3 - x*x * y*y * y
