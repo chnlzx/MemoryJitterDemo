@@ -35,8 +35,29 @@ def calculate_heart_points(size: int) -> list[list[bool]]:
 
 
 def map_to_rainbow_color(x: int, y: int, width: int) -> str:
-    """Map position to ANSI rainbow color code."""
-    pass
+    """Map position to ANSI rainbow color code.
+
+    Rainbow spectrum: Red -> Yellow -> Green -> Cyan -> Blue -> Purple
+    Based on x position (horizontal direction).
+    """
+    # ANSI color codes (simple rainbow without orange)
+    colors = [
+        "\033[31m",  # Red
+        "\033[33m",  # Yellow
+        "\033[32m",  # Green
+        "\033[36m",  # Cyan
+        "\033[34m",  # Blue
+        "\033[35m",  # Purple
+    ]
+
+    # Map x position to color index
+    if width <= 1:
+        color_index = 0
+    else:
+        color_index = int((x / (width - 1)) * (len(colors) - 1))
+        color_index = max(0, min(color_index, len(colors) - 1))
+
+    return colors[color_index]
 
 
 def main():

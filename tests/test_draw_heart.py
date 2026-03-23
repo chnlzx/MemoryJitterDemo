@@ -18,4 +18,12 @@ def test_calculate_heart_points_basic():
 
 def test_map_to_rainbow_color_basic():
     """Test basic rainbow color mapping."""
-    pass
+    width = 20
+
+    # Test left side (red)
+    color_left = map_to_rainbow_color(0, 0, width)
+    assert "\033[31m" in color_left  # Red ANSI code
+
+    # Test right side (purple)
+    color_right = map_to_rainbow_color(width-1, 0, width)
+    assert "\033[35m" in color_right  # Purple ANSI code
