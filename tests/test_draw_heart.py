@@ -60,3 +60,35 @@ def test_main_basic():
         assert "❤" in output
     finally:
         sys.argv = original_argv
+
+
+def test_calculate_heart_points_boundaries():
+    """Test boundary sizes."""
+    # Test minimum size
+    points_min = calculate_heart_points(5)
+    assert len(points_min) == 5
+
+    # Test maximum size
+    points_max = calculate_heart_points(50)
+    assert len(points_max) == 50
+
+
+def test_calculate_heart_points_invalid_size():
+    """Test invalid size handling."""
+    with pytest.raises(ValueError):
+        calculate_heart_points(4)
+
+    with pytest.raises(ValueError):
+        calculate_heart_points(51)
+
+
+def test_map_to_rainbow_color_completeness():
+    """Test all rainbow colors are generated."""
+    width = 100
+    colors_found = set()
+    for x in range(width):
+        color = map_to_rainbow_color(x, 0, width)
+        colors_found.add(color)
+
+    # Should find at least 3 different colors
+    assert len(colors_found) >= 3
