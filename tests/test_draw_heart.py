@@ -4,7 +4,16 @@ from draw_heart import calculate_heart_points, map_to_rainbow_color
 
 def test_calculate_heart_points_basic():
     """Test basic heart point calculation."""
-    pass
+    size = 10
+    points = calculate_heart_points(size)
+
+    # Should return 2D list
+    assert isinstance(points, list)
+    assert len(points) == size
+
+    # Should have some True values (heart points)
+    true_count = sum(sum(row) for row in points)
+    assert true_count > 0
 
 
 def test_map_to_rainbow_color_basic():
