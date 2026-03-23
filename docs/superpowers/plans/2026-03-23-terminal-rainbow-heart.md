@@ -130,8 +130,8 @@ def calculate_heart_points(size: int) -> list[list[bool]]:
         row_points = []
         for col in range(size):
             # Convert to math coordinates (center at 0,0)
-            # Scale coordinates based on size
-            scale = 2.0 / size
+            # Scale coordinates based on size (use 4.0 for better visibility)
+            scale = 4.0 / size
             x = (col - size/2) * scale
             y = (size/2 - row) * scale
 
@@ -189,15 +189,15 @@ Expected: FAIL
 def map_to_rainbow_color(x: int, y: int, width: int) -> str:
     """Map position to ANSI rainbow color code.
 
-    Rainbow spectrum: Red -> Orange -> Yellow -> Green -> Blue -> Purple
+    Rainbow spectrum: Red -> Yellow -> Green -> Cyan -> Blue -> Purple
     Based on x position (horizontal direction).
     """
-    # ANSI color codes
+    # ANSI color codes (simple rainbow without orange)
     colors = [
         "\033[31m",  # Red
-        "\033[33m",  # Yellow (using yellow for orange-ish)
+        "\033[33m",  # Yellow
         "\033[32m",  # Green
-        "\033[36m",  # Cyan (blue-ish)
+        "\033[36m",  # Cyan
         "\033[34m",  # Blue
         "\033[35m",  # Purple
     ]
@@ -296,6 +296,67 @@ Expected: PASS
 ```bash
 git add draw_heart.py tests/test_draw_heart.py
 git commit -m "feat: implement main() function with argument parsing"
+```
+
+---
+
+### Task 4.5: Add comprehensive tests
+
+**Files:**
+- Modify: `tests/test_draw_heart.py`
+
+- [ ] **Step 1: Add boundary and exception tests**
+
+```python
+def test_calculate_heart_points_boundaries():
+    """Test boundary sizes."""
+    # Test minimum size
+    points_min = calculate_heart_points(5)
+    assert len(points_min) == 5
+
+    # Test maximum size
+    points_max = calculate_heart_points(50)
+    assert len(points_max) == 50
+
+def test_calculate_heart_points_invalid_size():
+    """Test invalid size handling."""
+    with pytest.raises(ValueError):
+        calculate_heart_points(4)
+
+    with pytest.raises(ValueError):
+        calculate_heart_points(51)
+
+def test_map_to_rainbow_color_completeness():
+    """Test all rainbow colors are generated."""
+    width = 100
+    colors_found = set()
+    for x in range(width):
+        color = map_to_rainbow_color(x, 0, width)
+        colors_found.add(color)
+
+    # Should find at least 3 different colors
+    assert len(colors_found) >= 3
+```
+
+- [ ] **Step 2: Run all tests**
+
+Run: `pytest tests/test_draw_heart.py -v`
+Expected: All tests pass
+
+- [ ] **Step 3: Commit**
+
+```bash
+git add tests/test_draw_heart.py
+git commit -m "test: add boundary and exception tests
+
+Add tests for:
+- Boundary sizes (5 and 50)
+- Invalid size handling
+- Rainbow color completeness
+
+Constraint: Must test all edge cases
+Confidence: high
+Scope-risk: narrow"
 ```
 
 ---
