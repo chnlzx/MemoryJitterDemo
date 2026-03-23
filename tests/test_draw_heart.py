@@ -27,3 +27,11 @@ def test_map_to_rainbow_color_basic():
     # Test right side (purple)
     color_right = map_to_rainbow_color(width-1, 0, width)
     assert "\033[35m" in color_right  # Purple ANSI code
+
+    # Test intermediate color (middle of spectrum)
+    color_middle = map_to_rainbow_color(width // 2, 0, width)
+    assert "\033[32m" in color_middle  # Green ANSI code (middle of 6 colors)
+
+    # Test edge case: width=1
+    color_single = map_to_rainbow_color(0, 0, 1)
+    assert "\033[31m" in color_single  # Should default to red

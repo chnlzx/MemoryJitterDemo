@@ -39,6 +39,8 @@ def map_to_rainbow_color(x: int, y: int, width: int) -> str:
 
     Rainbow spectrum: Red -> Yellow -> Green -> Cyan -> Blue -> Purple
     Based on x position (horizontal direction).
+
+    Note: y parameter is unused as color depends solely on x position.
     """
     # ANSI color codes (simple rainbow without orange)
     colors = [
