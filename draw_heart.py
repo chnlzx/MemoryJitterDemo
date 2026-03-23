@@ -63,8 +63,34 @@ def map_to_rainbow_color(x: int, y: int, width: int) -> str:
 
 
 def main():
-    """Main function to draw heart."""
-    pass
+    """Main function to draw heart in terminal."""
+    parser = argparse.ArgumentParser(description="Draw a rainbow heart in the terminal")
+    parser.add_argument("--size", type=int, default=20, help="Size of heart (5-50)")
+    args = parser.parse_args()
+
+    # Validate size
+    if args.size < 5 or args.size > 50:
+        print("Error: Size must be between 5 and 50", file=sys.stderr)
+        sys.exit(1)
+
+    # Check Python version
+    if sys.version_info < (3, 6):
+        print("Error: Python 3.6+ required", file=sys.stderr)
+        sys.exit(1)
+
+    # Calculate heart points
+    points = calculate_heart_points(args.size)
+
+    # Draw heart with rainbow colors
+    for row in points:
+        line = ""
+        for col_idx, is_point in enumerate(row):
+            if is_point:
+                color = map_to_rainbow_color(col_idx, 0, len(row))
+                line += f"{color}❤\033[0m"  # Heart character with color reset
+            else:
+                line += " "
+        print(line)
 
 
 if __name__ == "__main__":

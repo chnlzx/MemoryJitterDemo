@@ -35,3 +35,28 @@ def test_map_to_rainbow_color_basic():
     # Test edge case: width=1
     color_single = map_to_rainbow_color(0, 0, 1)
     assert "\033[31m" in color_single  # Should default to red
+
+
+def test_main_basic():
+    """Test main function runs and produces output."""
+    import io
+    import sys
+    from contextlib import redirect_stdout
+    from draw_heart import main
+
+    # Mock sys.argv to avoid argparse picking up pytest arguments
+    original_argv = sys.argv
+    try:
+        sys.argv = ["draw_heart.py"]  # Simulate running the script with no args
+
+        # Redirect stdout to capture output
+        f = io.StringIO()
+        with redirect_stdout(f):
+            main()
+
+        output = f.getvalue()
+        # After implementation, it should contain heart characters
+        assert len(output) > 0
+        assert "❤" in output
+    finally:
+        sys.argv = original_argv
