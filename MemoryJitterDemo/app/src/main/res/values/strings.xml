@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Memory Jitter Demo</string>
+    <string name="title_main">内存抖动示例</string>
+    <string name="btn_object_creation">频繁创建对象示例</string>
+    <string name="btn_bitmap">Bitmap示例</string>
+    <string name="btn_collection">集合示例</string>
+    <string name="title_memory_usage">内存使用情况</string>
+</resources>
