@@ -1,0 +1,2 @@
+rootProject.name = "MemoryJitterDemo"
+include ':app'
