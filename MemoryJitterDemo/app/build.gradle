@@ -33,4 +33,14 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel:2.6.1'
     implementation 'androidx.lifecycle:lifecycle-livedata:2.6.1'
     implementation 'com.squareup.leakcanary:leakcanary-android:2.10'
+
+    // Force consistent Kotlin stdlib version to avoid conflicts
+    constraints {
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.10') {
+            because 'kotlin-stdlib-jdk7 is now part of kotlin-stdlib'
+        }
+        implementation('org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.10') {
+            because 'kotlin-stdlib-jdk8 is now part of kotlin-stdlib'
+        }
+    }
 }
