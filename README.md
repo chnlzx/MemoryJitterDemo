@@ -1,26 +1,22 @@
-# Terminal Rainbow Heart
+# Memory Jitter Demo Worktree
 
-Draw a large rainbow-colored heart in the terminal using Python.
+This worktree contains the **MemoryJitterDemo** Android project.
 
-## Usage
+## Project Structure
 
-```bash
-# Basic usage (default 20 lines)
-python3 draw_heart.py
-
-# Custom size
-python3 draw_heart.py --size 30
-
-# View help
-python3 draw_heart.py --help
+```
+.
+├── MemoryJitterDemo/    # Android demonstration project
+├── docs/                # Documentation
+└── tests/               # Test directory
 ```
 
-## Requirements
+## MemoryJitterDemo Android Project
 
-- Python 3.6+
-- Terminal with ANSI color support
+A Java-based Android demonstration project showing memory optimization scenarios including:
 
-## How it works
+- Object creation patterns
+- Bitmap management
+- Collection optimization
 
-Uses mathematical heart equation `(x²+y²-1)³ - x²y³ ≤ 0` to calculate heart shape,
-then maps positions to rainbow colors using ANSI escape codes.
+See `MemoryJitterDemo/README.md` for detailed project information.
